@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>停券標的追蹤（每日更新）</title>
+  <style>
+    :root { --bg:#0b1220; --card:#111a2e; --text:#e8eefc; --muted:#a9b7da; --line:#26324f; --accent:#6aa7ff; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+    .top { display:flex; gap:12px; flex-wrap:wrap; align-items:end; justify-content:space-between; }
+    h1 { font-size: 20px; margin:0; }
+    .meta { color:var(--muted); font-size: 13px; line-height: 1.4; }
+    .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    input { padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--text); min-width: 260px; }
+    a.btn { display:inline-block; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:transparent; color:var(--text); text-decoration:none; }
+    a.btn:hover { border-color: var(--accent); color: var(--accent); }
+    .card { margin-top: 14px; border:1px solid var(--line); background:var(--card); border-radius:14px; overflow:hidden; }
+    .table-wrap { overflow:auto; max-height: 75vh; }
+    table { border-collapse:collapse; width:max-content; min-width:100%; }
+    thead th { position: sticky; top: 0; background: #0e1730; z-index: 2; }
+    th, td { border-bottom:1px solid var(--line); padding:8px 10px; font-size: 13px; white-space: nowrap; }
+    tbody tr:hover { background: rgba(106,167,255,0.08); }
+    .right { text-align:right; }
+    .loading { padding: 14px; color: var(--muted); }
+    .error { padding: 14px; color: #ffb3b3; }
+    .foot { margin-top: 10px; color:var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>停券標的追蹤（每日 21:30 台北更新）</h1>
+        <div class="meta" id="meta">載入中…</div>
+      </div>
+      <div class="bar">
+        <input id="q" placeholder="搜尋：股票代號 / 名稱 / 任意欄位" autocomplete="off" />
+        <a class="btn" id="download" href="#" download>下載 CSV</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="table-wrap" id="tableWrap">
+        <div class="loading" id="status">載入資料中…</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      資料來源：<a href="https://www.twse.com.tw/zh/trading/margin/bfi84u.html" target="_blank" rel="noopener">BFI84U</a>、
+      <a href="https://www.twse.com.tw/zh/trading/margin/twt93u.html" target="_blank" rel="noopener">TWT93U</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
